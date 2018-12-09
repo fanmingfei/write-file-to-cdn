@@ -1,5 +1,6 @@
 const qiniu = require('qiniu')
 module.exports = async function initQiniu(ctx, next) {
+    console.log(ctx.request.body.qiniu)
     const params = JSON.parse(ctx.request.body.qiniu)
     Object.assign(ctx.state, params)
     const mac = new qiniu.auth.digest.Mac(ctx.state.accessKey, ctx.state.secretKey);

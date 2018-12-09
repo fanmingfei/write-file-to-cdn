@@ -47,7 +47,7 @@ export default {
       mime: 'application/json',
       qiniu: {
       },
-      serverUrl: 'http://127.0.0.1:3000/'
+      serverUrl: 'http://text.escript.cn/'
     }
   },
   computed: {
@@ -98,12 +98,12 @@ export default {
 
       let params = []
       for (let key in data) {
-        params.push(`${key}=${data[key]}`)
+        params.push(`${key}=${encodeURIComponent(data[key])}`)
       }
       const body = params.join('&')
       console.log(body)
 
-      fetch(serverUrl, {
+      fetch(this.serverUrl, {
         method: 'POST',
         body,
         headers: {
@@ -138,9 +138,10 @@ export default {
     if (qiniu) {
       this.qiniu = JSON.parse(qiniu)
     } else {
+      console.log(1)
       this.$refs.modal.pop()
     }
-    if (qiniu && (!qiniu.accessKey || !qiniu.secretKey || !qiniu.bucket || !qiniu.domain)) {
+    if (qiniu && (!this.qiniu.accessKey || !this.qiniu.secretKey || !this.qiniu.bucket || !this.qiniu.domain)) {
       this.$refs.modal.pop()
     }
     this.mode = 'js'
