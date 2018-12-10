@@ -47,7 +47,7 @@ export default {
       mime: 'application/json',
       qiniu: {
       },
-      serverUrl: 'http://text.escript.cn/'
+      serverUrl: '//text.escript.cn/'
     }
   },
   computed: {
